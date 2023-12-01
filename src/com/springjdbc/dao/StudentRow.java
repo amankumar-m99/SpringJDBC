@@ -18,10 +18,10 @@ public class StudentRow implements RowMapper<Student>{
 
 	@Override
 	public Student mapRow(ResultSet rs, int rowNum) throws SQLException {
-		Student student = context.getBean("student", Student.class);
-		student.setId(rs.getInt(1));
-		student.setName(rs.getString(2));
-		student.setCity(rs.getString(3));
+		int id = rs.getInt(1);
+		String name=rs.getString(2);
+		String city=rs.getString(3);
+		Student student = new Student(id, name, city);
 		return student;
 	}
 

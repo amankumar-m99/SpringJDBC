@@ -29,8 +29,10 @@ public class StudentDaoImpl implements StudentDao{
 	}
 
 	@Override
-	public List<Student> getStudents(){
-		return null;
+	public List<Student> getAllStudents(){
+		String query = "select * from student";
+		RowMapper<Student> rowMapper = new StudentRow();
+		return this.jdbcTemplate.query(query, rowMapper);
 	}
 
 	@Override
@@ -41,15 +43,13 @@ public class StudentDaoImpl implements StudentDao{
 
 	@Override
 	public int update(Student student) {
-		String query = "insert into student (id, name, city) values (?, ?, ?);";
-		return jdbcTemplate.update(query, student.getId(), student.getName(), student.getCity());
+		String query = "update student set name=? , city=? where id=?";
+		return jdbcTemplate.update(query, student.getName(), student.getCity(), student.getId());
 	}
 
 	@Override
 	public int delete(int id) {
-		Student student = getStudentById(id);
-		return 0;
+		String query="delete from student where id=?";
+		return jdbcTemplate.update(query, id);
 	}
-
-
 }
