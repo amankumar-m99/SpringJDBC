@@ -14,7 +14,7 @@ public class JdbcConfig {
 
 	@Bean("student")
 	public Student getStudent() {
-		return new Student(1, "no_name", "no_city");
+		return new Student(0, "s_name", "s_city");
 	}
 
 	@Bean("dataSource")
@@ -34,9 +34,9 @@ public class JdbcConfig {
 		return jdbcTemplate;
 	}
 
-	@Bean("studentDaoImpl")
-	public StudentDao getStudentDaoImpl() {
-		StudentDaoImpl studentDaoImpl = new StudentDaoImpl(getJdbcTemplate());
-		return studentDaoImpl;
+	@Bean("studentDao")
+	public StudentDao getStudentDao() {
+		StudentDao StudentDao = new StudentDaoImpl(getJdbcTemplate());
+		return StudentDao;
 	}
 }

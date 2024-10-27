@@ -7,6 +7,7 @@ import org.springframework.jdbc.core.RowMapper;
 
 import com.springjdbc.entity.Student;
 
+//this class can annotated with @Component
 public class StudentDaoImpl implements StudentDao{
 
 	private JdbcTemplate jdbcTemplate;
@@ -48,7 +49,7 @@ public class StudentDaoImpl implements StudentDao{
 	}
 
 	@Override
-	public int delete(int id) {
+	public int deleteById(int id) {
 		String query="delete from student where id=?";
 		return jdbcTemplate.update(query, id);
 	}

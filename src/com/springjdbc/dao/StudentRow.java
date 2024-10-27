@@ -3,18 +3,11 @@ package com.springjdbc.dao;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-import org.springframework.context.ApplicationContext;
-import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.jdbc.core.RowMapper;
 
 import com.springjdbc.entity.Student;
 
 public class StudentRow implements RowMapper<Student>{
-
-	private ApplicationContext context;
-	public StudentRow() {
-		this.context = new ClassPathXmlApplicationContext("com/springjdbc/resources/config.xml");
-	}
 
 	@Override
 	public Student mapRow(ResultSet rs, int rowNum) throws SQLException {
@@ -24,5 +17,4 @@ public class StudentRow implements RowMapper<Student>{
 		Student student = new Student(id, name, city);
 		return student;
 	}
-
 }

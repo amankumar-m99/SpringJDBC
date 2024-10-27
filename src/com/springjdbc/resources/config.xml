@@ -9,24 +9,27 @@
         http://www.springframework.org/schema/util/spring-util.xsd">
 
     <!-- bean definitions here -->
-	
+
     <bean name="student" class="com.springjdbc.entity.Student">
-		<constructor-arg name="id" value="100"/>
-		<constructor-arg name="name" value="100"/>
-		<constructor-arg name="city" value="100"/>
+		<constructor-arg name="id" value="0"/>
+		<constructor-arg name="name" value="s_name"/>
+		<constructor-arg name="city" value="s_city"/>
 	</bean>
-	<bean name="datasource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+
+	<bean name="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
 		<!-- <property name="driverClassName" value="com.mysql.jdbc.Driver"/> -->
 		<property name="driverClassName" value="com.mysql.cj.jdbc.Driver"/>
 		<property name="url" value="jdbc:mysql://localhost:3306/springjdbc"/>
 		<property name="username" value="root"/>
 		<property name="password" value="1234"/>
 	</bean>
-	<bean name="jdbctemplate" class="org.springframework.jdbc.core.JdbcTemplate">
-		<property name="dataSource"><ref bean="datasource"/></property>
+
+	<bean name="jdbcTemplate" class="org.springframework.jdbc.core.JdbcTemplate">
+		<property name="dataSource"><ref bean="dataSource"/></property>
 	</bean>
-	<bean name="studentDaoImpl" class="com.springjdbc.dao.StudentDaoImpl">
-		<constructor-arg name="jdbcTemplate" ref="jdbctemplate"></constructor-arg>
+
+	<bean name="studentDao" class="com.springjdbc.dao.StudentDaoImpl">
+		<constructor-arg name="jdbcTemplate" ref="jdbcTemplate"></constructor-arg>
 	</bean>
-	
+
 </beans>
